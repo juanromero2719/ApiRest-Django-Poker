@@ -1,0 +1,101 @@
+# GET (ENLISTAR)
+
+# Comando
+curl -L http://localhost:8000/api/v1/programmers/
+
+# Salida
+[{"id":1,"fullname":"Sebastian Romero","nickname":"wrydmoon","age":21,"is_active":false},{"id":2,"fullname":"Felipe Huertas","nickname":"pazalizo","age":20,"is_active":true}]
+
+
+# POST (AGREGAR)
+
+# Comando
+
+curl -X POST http://localhost:8000/api/v1/programmers/ -d "fullname=Brian Duran&nickname=rafa103&age=20&is_active=true"
+
+# Salida
+
+{"id":3,"fullname":"Brian Duran","nickname":"rafa103","age":20,"is_active":true}
+
+# DELETE 
+
+# Comando
+
+curl -X DELETE http://localhost:8000/api/v1/programmers/{3}/
+
+# PUT (Editar todos los campos) (Puede crear un usuario con un id especifico)
+
+# Comando
+
+curl -X PUT http://localhost:8000/api/v1/programmers/{4}/ -d "fullname=Michael Andres&nickname=Alimox&age=25&is_active=false"
+
+# Salida
+
+{"id":4,"fullname":"Michael Andres","nickname":"Alimox","age":25,"is_active":false}
+
+# PATCH (Editar un solo campo)
+
+# Comando
+
+curl -X PATCH http://localhost:8000/api/v1/programmers/{1}/ -d "is_active=True"
+
+# Salida
+
+{"id":1,"fullname":"Sebastian Romero","nickname":"wrydmoon","age":21,"is_active"
+
+# OPTIONS (Informacion sobre opciones de comunicacion)
+
+# Comando
+
+curl -X OPTIONS http://localhost:8000/api/v1/programmers/
+
+# Salida
+
+{"name":"Programador List","description":"","renders":["application/json","text/html"],"parses":["application/json","application/x-www-form-urlencoded","multipart/form-data"],"actions":{"POST":{"id":{"type":"integer","required":false,"read_only":true,"label":"ID"},"fullname":{"type":"string","required":true,"read_only":false,"label":"Fullname","max_length":100},"nickname":{"type":"string","required":true,"read_only":false,"label":"Nickname","max_length":100},"age":{"type":"integer","required":true,"read_only":false,"label":"Age"},"is_active":{"type":"boolean","required":false,"read_only":false,"label":"Is active"}}}}
+
+# HEAD (obtener solo los encabezados de respuesta de la API)
+
+# Comando 
+
+curl -I http://localhost:8000/api/v1/programmers/
+
+# Salida
+
+HTTP/1.1 200 OK
+Date: Fri, 31 May 2024 00:19:25 GMT
+Server: WSGIServer/0.2 CPython/3.9.2
+Content-Type: application/json
+Vary: Accept, Cookie
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+
+# PARA ENLISTAR JUGADORES
+
+curl -L http://localhost:8000/api/v1/jugadores
+
+# PARA AGREGAR JUGADORES
+
+curl -X POST http://localhost:8000/api/v1/jugadores/ -d "nombre=juan"
+
+# ASIGNAR CARTAS
+
+curl -X POST http://localhost:8000/api/v1/jugadores/76/asignarcartas/
+
+# CAMBIAR CARTAS
+
+curl -X POST http://localhost:8000/api/v1/jugadores/76/cambiarcartas/ -H "Content-Type: application/json" -d "{\"cartas\":[506,507]}"
+
+# VER ESTADO
+
+curl -L http://localhost:8000/api/v1/estado
+
+# VOLVER A JUGAR CON LOS JUGADORES
+
+curl -L http://localhost:8000/api/v1/volverajugar
+
+# REINICIAR JUEGO
+
+curl -L http://localhost:8000/api/v1/iniciarjuego
